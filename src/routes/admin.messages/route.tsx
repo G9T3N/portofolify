@@ -4,6 +4,15 @@ import { useAdminMessagesState } from "./queries";
 import MessageItem from "./components/message-item";
 import DeleteMessageDialog from "./components/delete-message-dialog";
 
+/**
+ * Renders the admin Messages page for viewing and managing contact form submissions.
+ *
+ * Displays a header and a card that shows a loading state, an empty-state message, or a list of messages.
+ * Expanding an unread message marks it as read. Provides a deletion confirmation dialog that invokes
+ * the configured delete handler and closes the dialog after confirmation.
+ *
+ * @returns The React element for the admin Messages page.
+ */
 export default function AdminMessages() {
   const {
     expandedId,

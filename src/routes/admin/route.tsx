@@ -22,6 +22,13 @@ const sidebarItems = [
   { to: "/admin/messages", label: "Messages", icon: MessageSquare },
 ];
 
+/**
+ * Renders the admin page layout with a fixed left sidebar and a main content area.
+ *
+ * The sidebar contains branding, navigation links (from `sidebarItems`), and a conditional unread-messages badge driven by admin stats. The main area hosts nested route content via an `Outlet`.
+ *
+ * @returns A React element representing the admin layout with sidebar navigation and an Outlet for nested routes.
+ */
 export default function AdminLayout() {
   const { data: stats } = useAdminStats();
 

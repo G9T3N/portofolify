@@ -20,6 +20,12 @@ export interface Skill {
   created_at: string;
 }
 
+/**
+ * Fetches and caches skill category rows ordered by `display_order`.
+ *
+ * @returns The query result containing an array of `SkillCategory` objects.
+ * @throws The Supabase error returned when fetching categories fails.
+ */
 export function useSkillCategories() {
   return useQuery({
     queryKey: ['skill-categories'],
@@ -34,6 +40,11 @@ export function useSkillCategories() {
   });
 }
 
+/**
+ * Retrieve the list of skills sorted by `display_order`.
+ *
+ * @returns The React Query result whose `data` is an array of `Skill` objects sorted by `display_order`.
+ */
 export function useSkills() {
   return useQuery({
     queryKey: ['skills'],
@@ -48,6 +59,14 @@ export function useSkills() {
   });
 }
 
+/**
+ * Provides a React Query mutation for creating or updating a skill.
+ *
+ * The mutation either updates an existing skill when `isEdit` and `skillId` are provided, or inserts a new skill when creating. On success it invalidates the `['skills']` query, shows a success toast, and calls the supplied callback; on error it shows a destructive toast.
+ *
+ * @param onSuccess - Callback invoked after a successful insert or update
+ * @returns The React Query mutation object used to execute the skill create/update operation
+ */
 export function useSkillMutation(onSuccess: () => void) {
   const queryClient = useQueryClient();
 
@@ -91,6 +110,13 @@ export function useSkillMutation(onSuccess: () => void) {
   });
 }
 
+/**
+ * Creates a React Query mutation that deletes a skill by id.
+ *
+ * The mutation function accepts a single `id: string` argument and deletes the corresponding row from the `skills` table. On success it invalidates the `['skills']` query and shows a "Skill deleted" toast. The mutation throws the Supabase error if deletion fails.
+ *
+ * @returns A mutation object whose mutation function expects `id: string`
+ */
 export function useDeleteSkillMutation() {
   const queryClient = useQueryClient();
 
@@ -106,6 +132,15 @@ export function useDeleteSkillMutation() {
   });
 }
 
+/**
+ * Create a mutation that toggles a skill's `is_visible` flag.
+ *
+ * The mutation accepts an object `{ id, isVisible }`, updates the skill's `is_visible`
+ * column to the inverse of `isVisible`, and invalidates the `['skills']` query on success.
+ *
+ * @returns A React Query mutation result that performs the visibility toggle when executed.
+ * @throws The Supabase error if the update operation fails.
+ */
 export function useToggleSkillVisibilityMutation() {
   const queryClient = useQueryClient();
 
@@ -123,6 +158,12 @@ export function useToggleSkillVisibilityMutation() {
   });
 }
 
+/**
+ * Creates a React Query mutation for inserting or updating skill categories.
+ *
+ * @param onSuccess - Callback invoked after a successful create or update operation
+ * @returns A React Query mutation that accepts `{ isEdit, categoryId?, category }` and either inserts a new category or updates an existing one
+ */
 export function useCategoryMutation(onSuccess: () => void) {
   const queryClient = useQueryClient();
 
@@ -160,6 +201,17 @@ export function useCategoryMutation(onSuccess: () => void) {
   });
 }
 
+/**
+ * Creates a React Query mutation that deletes a skill category by id.
+ *
+ * The mutation deletes the row from `skill_categories`, and on success invalidates both
+ * `['skill-categories']` and `['skills']`, shows a "Category deleted" toast, and invokes the
+ * provided `onSuccess` callback.
+ *
+ * @param onSuccess - Callback invoked after successful deletion and cache invalidation
+ * @returns A React Query mutation object for deleting a category by `id`
+ * @throws Throws the Supabase error when the delete operation fails
+ */
 export function useDeleteCategoryMutation(onSuccess: () => void) {
   const queryClient = useQueryClient();
 

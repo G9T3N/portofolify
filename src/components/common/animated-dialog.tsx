@@ -10,6 +10,19 @@ interface AnimatedDialogProps {
   className?: string;
 }
 
+/**
+ * Renders a centered modal dialog with animated backdrop and scale/fade transitions.
+ *
+ * Renders nothing when `isOpen` is `false`; when `isOpen` is `true` it mounts an overlay
+ * with a backdrop and an animated dialog panel containing the provided `title` and `children`.
+ *
+ * @param isOpen - Controls whether the dialog is mounted and visible
+ * @param onClose - Called when the close button in the top-right of the dialog is clicked
+ * @param title - Heading text displayed at the top of the dialog
+ * @param children - Content rendered inside the dialog body
+ * @param className - Additional classes applied to the dialog container (default: `"max-w-4xl"`)
+ * @returns A React element that mounts the animated dialog when `isOpen` is `true`, otherwise `null`
+ */
 export function AnimatedDialog({ isOpen, onClose, title, children, className = "max-w-4xl" }: AnimatedDialogProps) {
   return (
     <AnimatePresence>

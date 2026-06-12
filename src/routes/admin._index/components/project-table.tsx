@@ -21,6 +21,16 @@ type ProjectTableProps = {
   onDelete: (project: Project) => void;
 };
 
+/**
+ * Render a table of projects with three states: loading, empty, and populated rows with per-row actions.
+ *
+ * @param projects - Array of project records to display; if `undefined` or empty the component shows the empty state.
+ * @param isLoading - When `true`, show the loading state instead of project rows.
+ * @param onView - Called with a project when the row's View action is triggered.
+ * @param onEdit - Called with a project when the row's Edit action is triggered.
+ * @param onDelete - Called with a project when the row's Delete action is triggered.
+ * @returns The table element representing the current state (loading, empty, or list of project rows).
+ */
 export default function ProjectTable({ projects, isLoading, onView, onEdit, onDelete }: ProjectTableProps) {
   if (isLoading) {
     return (

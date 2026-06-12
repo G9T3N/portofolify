@@ -1,6 +1,11 @@
 import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
 
+/**
+ * Renders a toast notification container that displays current toasts from state.
+ *
+ * @returns A React element containing a ToastProvider with mapped Toast items (each showing an optional title, description, action, and close control) and a ToastViewport for positioning.
+ */
 export function Toaster() {
   const { toasts } = useToast();
 

@@ -15,6 +15,17 @@ type DeleteProjectDialogProps = {
   onConfirm: () => void;
 };
 
+/**
+ * Renders a confirmation dialog to delete the given project.
+ *
+ * The dialog is open when `project` is non-null. When dismissed it calls `onClose`; when the
+ * "Delete" action is clicked it calls `onConfirm`.
+ *
+ * @param project - The project to display in the confirmation message, or `null` to keep the dialog closed
+ * @param onClose - Callback invoked when the dialog is dismissed or closed
+ * @param onConfirm - Callback invoked when the user confirms deletion by clicking "Delete"
+ * @returns The AlertDialog React element for confirming project deletion
+ */
 export default function DeleteProjectDialog({ project, onClose, onConfirm }: DeleteProjectDialogProps) {
   return (
     <AlertDialog open={project !== null} onOpenChange={(open) => { if (!open) {onClose();} }}>
