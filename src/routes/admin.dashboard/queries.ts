@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export function useDashboardStats() {
   return useQuery({
-    queryKey: ["admin-stats"],
+    queryKey: ["admin-dashboard-stats"],
     queryFn: async () => {
       const [
         { count: projectsCount, error: projectsError },
