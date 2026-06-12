@@ -1,4 +1,5 @@
-import { GitMerge, Dock, Mail } from "lucide-react";
+import { GitMerge, Dock, Mail, Lock } from "lucide-react";
+import { Link } from "react-router";
 
 const SOCIAL_LINKS = [
   { icon: GitMerge, href: "https://github.com/mrerr", label: "GitHub" },
@@ -13,9 +14,18 @@ const Footer = () => {
     <footer className="px-4 md:px-8 lg:px-12 py-12 border-t border-[var(--color-border-default)]">
       <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
         {/* Copyright */}
-        <p className="text-sm text-[var(--color-text-muted)]">
-          © {currentYear} Mr.Err. All rights reserved.
-        </p>
+        <div className="flex items-center gap-2">
+          <p className="text-sm text-[var(--color-text-muted)]">
+            © {currentYear} Mr.Err. All rights reserved.
+          </p>
+          <Link
+            to="/admin/login"
+            className="text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors opacity-50 hover:opacity-100 ml-2"
+            title="Admin Login"
+          >
+            <Lock className="w-4 h-4" />
+          </Link>
+        </div>
 
         {/* Social links */}
         <div className="flex items-center gap-4">
