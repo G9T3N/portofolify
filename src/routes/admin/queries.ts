@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
+/**
+ * Fetches and caches admin statistics: total projects, total contact messages, and unread contact messages.
+ *
+ * @returns An object with `totalProjects`, `totalMessages`, and `unreadMessages`, each a number.
+ */
 export function useAdminStats() {
   return useQuery({
     queryKey: ["admin-stats"],

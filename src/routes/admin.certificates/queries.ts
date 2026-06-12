@@ -15,6 +15,12 @@ export interface Certificate {
   is_visible: boolean;
 }
 
+/**
+ * Fetches certificate records for admin, ordered by `display_order`.
+ *
+ * @returns A query result whose `data` is an array of `Certificate` records sorted by `display_order`.
+ * @throws If the Supabase query returns an error. 
+ */
 export function useAdminCertificates() {
   return useQuery({
     queryKey: ['admin-certificates'],
@@ -29,6 +35,12 @@ export function useAdminCertificates() {
   });
 }
 
+/**
+ * Creates a mutation hook to add a new certificate with an auto-assigned `display_order`.
+ *
+ * @param onSuccess - Callback invoked after a certificate is successfully created and cache invalidation completes
+ * @returns A React Query mutation configured to insert a certificate into the `certificates` table; on success it invalidates the `['admin-certificates']` query, shows a success toast, and calls `onSuccess`; on error it shows a destructive toast.
+ */
 export function useCreateCertificateMutation(onSuccess: () => void) {
   const queryClient = useQueryClient();
   const { data: certificates } = useAdminCertificates();
@@ -53,6 +65,12 @@ export function useCreateCertificateMutation(onSuccess: () => void) {
   });
 }
 
+/**
+ * Provides a React Query mutation to update a certificate by id and refresh the admin certificates list.
+ *
+ * @param onSuccess - Callback invoked after a successful update.
+ * @returns A mutation object that accepts `{ id, data }` to update the certificate; on success it invalidates the `['admin-certificates']` query, shows a success toast and calls `onSuccess`; on error it shows a destructive failure toast.
+ */
 export function useUpdateCertificateMutation(onSuccess: () => void) {
   const queryClient = useQueryClient();
 
@@ -72,6 +90,11 @@ export function useUpdateCertificateMutation(onSuccess: () => void) {
   });
 }
 
+/**
+ * Provides a mutation hook to delete a certificate by id and refresh the admin certificates list.
+ *
+ * @returns A React Query mutation that accepts a certificate `id` and deletes that record from the `certificates` table; on success it invalidates the `['admin-certificates']` query and shows a success toast, on error it shows a destructive error toast.
+ */
 export function useDeleteCertificateMutation() {
   const queryClient = useQueryClient();
 
@@ -90,6 +113,11 @@ export function useDeleteCertificateMutation() {
   });
 }
 
+/**
+ * Toggles the `is_visible` flag for a certificate record.
+ *
+ * @returns A React Query mutation that accepts `{ id, is_visible }`, flips `is_visible` for the specified certificate in the database, and invalidates the `['admin-certificates']` query on success.
+ */
 export function useToggleCertificateVisibilityMutation() {
   const queryClient = useQueryClient();
 

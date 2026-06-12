@@ -21,6 +21,13 @@ const badgeVariants = cva(
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
 
+/**
+ * Renders a badge element with variant-driven styles merged with any additional classes.
+ *
+ * @param className - Additional CSS classes to merge with the computed badge classes
+ * @param variant - Visual variant to apply; supported values: `"default"`, `"secondary"`, `"destructive"`, `"outline"`
+ * @returns A `div` element styled as a badge according to the selected `variant`
+ */
 function Badge({ className, variant, ...props }: BadgeProps) {
   return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
 }

@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 
+/**
+ * Fetches aggregated admin counts (projects, contact messages, unread messages, certificates, and work experiences) from Supabase and exposes them through React Query.
+ *
+ * @returns The React Query result object containing status flags and a `data` object with numeric fields: `totalProjects`, `totalMessages`, `unreadMessages`, `totalCertificates`, and `totalExperiences` (each defaults to `0` when missing).
+ */
 export function useAdminStats() {
   return useQuery({
     queryKey: ["admin-stats"],

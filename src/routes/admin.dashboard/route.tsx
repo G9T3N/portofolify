@@ -11,6 +11,14 @@ const statCards = [
   { label: "Work Experiences", key: "totalExperiences" as const, icon: Users, color: "from-cyan-500/20 to-cyan-600/10 border-cyan-500/30" },
 ];
 
+/**
+ * Render the admin dashboard overview with animated statistic cards.
+ *
+ * Displays a header and a responsive grid of stat cards driven by `useDashboardStats()`.
+ * Each card shows a label, icon, and the corresponding metric value (falls back to `0` when a metric is missing).
+ *
+ * @returns A React element representing the admin dashboard UI
+ */
 export default function AdminDashboard() {
   const { data: stats } = useDashboardStats();
   const value = (k: typeof statCards[number]["key"]) => stats?.[k] ?? 0;

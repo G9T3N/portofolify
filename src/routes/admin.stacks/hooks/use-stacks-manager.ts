@@ -12,6 +12,20 @@ import {
   useDeleteCategoryMutation,
 } from '../queries';
 
+/**
+ * Manages UI state, controlled form data, and mutation-backed handlers for skill categories and skills in the admin "stacks" interface.
+ *
+ * Exposes state (active category, open/closed form flags, current editing targets), controlled form values and setters, edit/close/submit handlers, fetched lists and loading flags for categories and skills, and mutation objects for creating, updating, deleting, and toggling visibility of skills and categories.
+ *
+ * @returns An object containing:
+ * - current selections and setters: `activeCategory`, `setActiveCategory`
+ * - form open flags and setters: `isSkillFormOpen`, `setIsSkillFormOpen`, `isCategoryFormOpen`, `setIsCategoryFormOpen`
+ * - current edit targets: `editingSkill`, `editingCategory`
+ * - form values and setters: `skillForm`, `setSkillForm`, `categoryForm`, `setCategoryForm`
+ * - UI handlers: `handleCloseSkillForm`, `handleCloseCategoryForm`, `handleEditSkill`, `handleEditCategory`, `handleSubmitSkill`, `handleSubmitCategory`
+ * - fetched data and loading flags: `categories`, `categoriesLoading`, `skills`, `skillsLoading`
+ * - mutation objects: `skillMutation`, `deleteSkillMutation`, `toggleVisibilityMutation`, `deleteCategoryMutation`
+ */
 export function useStacksManager() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [isSkillFormOpen, setIsSkillFormOpen] = useState(false);

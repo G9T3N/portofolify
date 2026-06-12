@@ -2,6 +2,15 @@ import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
 
+/**
+ * Provides helpers to upload and delete files in a Supabase storage bucket and exposes upload state.
+ *
+ * @param bucket - Name of the Supabase storage bucket to operate on.
+ * @returns An object with:
+ *   - `uploadImage(file)`: Uploads a file to `uploads/` in the bucket and returns the file's public URL as a string on success or `null` on validation or upload failure.
+ *   - `deleteImage(url)`: Removes the stored object corresponding to the given public URL from the bucket.
+ *   - `isUploading`: `true` while an upload is in progress, `false` otherwise.
+ */
 export function useImageUpload(bucket: string) {
   const [isUploading, setIsUploading] = useState(false);
 

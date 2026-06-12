@@ -15,6 +15,14 @@ type DeleteMessageDialogProps = {
   onConfirm: () => void;
 };
 
+/**
+ * Renders a confirmation dialog for deleting a message.
+ *
+ * @param id - The identifier of the message to delete; dialog is visible when this is not `null`
+ * @param onClose - Called when the dialog is dismissed without confirming deletion
+ * @param onConfirm - Called when the user confirms deletion
+ * @returns The rendered alert dialog element
+ */
 export default function DeleteMessageDialog({ id, onClose, onConfirm }: DeleteMessageDialogProps) {
   return (
     <AlertDialog open={id !== null} onOpenChange={(open) => { if (!open) {onClose();} }}>

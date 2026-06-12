@@ -6,6 +6,13 @@ import ProjectTable from "./components/project-table";
 import DeleteProjectDialog from "./components/delete-project-dialog";
 import { useAdminProjectsState } from "./queries";
 
+/**
+ * Renders the admin "Project Manager" page which lists projects and provides controls to view, create, edit, and delete projects.
+ *
+ * The component displays a header with a "New Project" button, a projects table, a project form dialog for creating/editing, and a delete confirmation dialog.
+ *
+ * @returns The JSX element for the admin projects page.
+ */
 export default function AdminProjects() {
   const {
     navigate,

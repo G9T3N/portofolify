@@ -9,6 +9,17 @@ type MessageItemProps = {
   onDelete: (id: string) => void;
 };
 
+/**
+ * Render a message list item that supports collapsed and expanded views with actions.
+ *
+ * Displays a compact header (sender name, email, formatted date, and read/unread icon) and, when expanded, shows message details (name, email, optional phone, body) plus a Delete action.
+ *
+ * @param msg - Message object expected to include `id`, `is_read`, `name`, `email`, `created_at`, optional `phone`, and `message`
+ * @param isExpanded - Whether the item's details are currently expanded
+ * @param onToggle - Callback invoked with the message `id` when the header is clicked to toggle expansion
+ * @param onDelete - Callback invoked with the message `id` when the Delete action is triggered
+ * @returns The rendered message list item element
+ */
 export default function MessageItem({ msg, isExpanded, onToggle, onDelete }: MessageItemProps) {
   const isUnread = !(msg.is_read as boolean);
 

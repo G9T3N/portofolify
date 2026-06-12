@@ -17,6 +17,12 @@ export interface WorkExperience {
   is_visible: boolean;
 }
 
+/**
+ * Fetches work experience records from Supabase ordered by `display_order` ascending.
+ *
+ * @returns The React Query result object whose `data` is an array of `WorkExperience` records.
+ * @throws The Supabase error if the query fails.
+ */
 export function useAdminExperiences() {
   return useQuery({
     queryKey: ['admin-experiences'],
@@ -31,6 +37,12 @@ export function useAdminExperiences() {
   });
 }
 
+/**
+ * Create a React Query mutation that inserts a work experience record into the database.
+ *
+ * @param onSuccess - Callback invoked after a successful insert and after cache invalidation and success toast have been performed.
+ * @returns The React Query mutation configured to insert a `work_experiences` record and perform success/error side effects.
+ */
 export function useCreateExperienceMutation(onSuccess: () => void) {
   const queryClient = useQueryClient();
 
@@ -50,6 +62,12 @@ export function useCreateExperienceMutation(onSuccess: () => void) {
   });
 }
 
+/**
+ * Creates a React Query mutation for updating a work experience record by id.
+ *
+ * @param onSuccess - Callback invoked after the experience is successfully updated
+ * @returns A React Query mutation object for performing the update and handling success/error side effects
+ */
 export function useUpdateExperienceMutation(onSuccess: () => void) {
   const queryClient = useQueryClient();
 
@@ -69,6 +87,11 @@ export function useUpdateExperienceMutation(onSuccess: () => void) {
   });
 }
 
+/**
+ * Creates a mutation that deletes a work experience by id.
+ *
+ * @returns A React Query mutation object whose mutation function accepts an `id` string and deletes the matching `work_experiences` record; on success it invalidates `['admin-experiences']` and shows a success toast, on error it shows a destructive error toast.
+ */
 export function useDeleteExperienceMutation() {
   const queryClient = useQueryClient();
 
@@ -87,6 +110,11 @@ export function useDeleteExperienceMutation() {
   });
 }
 
+/**
+ * Creates a mutation to toggle the `is_visible` flag of a work experience by id.
+ *
+ * @returns A mutation that accepts `{ id, is_visible }` and, when executed, sets `is_visible` to the opposite value for the specified work experience, invalidates the `['admin-experiences']` query, and shows a success toast.
+ */
 export function useToggleExperienceVisibilityMutation() {
   const queryClient = useQueryClient();
 
